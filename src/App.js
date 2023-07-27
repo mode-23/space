@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
+import './stars.css';
+import {useEffect, useState} from 'react'
+import Menu from './Components/NavMenu/Menu';
 function App() {
+  const [active, isActive] = useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      if(active){
+        document.body.classList.add("menu-toggled");
+        }else{
+          document.body.classList.remove("menu-toggled");
+        }
+    }, 200);
+  }, [active])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+<Menu isActive={isActive}/>
+<div id="content">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+</div>
+    </>
   );
 }
 
